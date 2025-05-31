@@ -6,6 +6,7 @@ import { Quiz } from './components/quiz.tsx';
 
 function App() {
     const [data, setData] = useState<QUIZ[]>([]);
+    const [questionNo, setQuestionNo] = useState<number>(0);
 
     useEffect(() => {
         // fetch('')
@@ -17,13 +18,19 @@ function App() {
     return (
         <div className="container">
             <div className="subject">Programming</div>
-            <div className="question-header">question: 1/10</div>
-            <Quiz {...data[0]} />
+            <div className="question-header">
+                question: {questionNo + 1}/{data.length}
+            </div>
+            <Quiz {...data[questionNo]} />
             <div className="nav nav-next">
-                <button>Next</button>
+                <button disabled={questionNo === data.length - 1} onClick={() => setQuestionNo((c) => c + 1)}>
+                    Next
+                </button>
             </div>
             <div className="nav nav-prev">
-                <button>Prev</button>
+                <button disabled={questionNo === 0} onClick={() => setQuestionNo((c) => c - 1)}>
+                    Prev
+                </button>
             </div>
         </div>
     );
