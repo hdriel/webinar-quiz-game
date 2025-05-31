@@ -21,7 +21,9 @@ function App() {
             <div className="question-header">
                 question: {questionNo + 1}/{data.length}
             </div>
-            <Quiz {...data[questionNo]} />
+            <div className="quiz">
+                <Quiz {...data[questionNo]} />
+            </div>
             <div className="nav nav-next">
                 <button disabled={questionNo === data.length - 1} onClick={() => setQuestionNo((c) => c + 1)}>
                     Next

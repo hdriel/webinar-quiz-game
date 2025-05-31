@@ -3,6 +3,10 @@
     height: 100vh;
 }
 
+* {
+    outline: 1px solid black;
+}
+
 .container {
     height: 100%;
     display: grid;
@@ -27,9 +31,24 @@
     grid-area: H;
     @include center;
 }
+
+.quiz-container {
+    display: grid;
+    width: 100%;
+    max-width: 500px;
+    grid-template: 250px 70px 70px / 1fr 1fr;
+    padding: 0 2em;
+
+    .question {
+        grid-column: span 2;
+        @include center;
+    }
+}
+
 .quiz {
     grid-area: Q;
-    @include center;
+    display: flex;
+    justify-content: center;
 }
 .nav-next {
     grid-area: N;
@@ -38,4 +57,23 @@
 .nav-prev {
     grid-area: P;
     @include center;
+}
+
+@media screen and (max-width: 750px) {
+    .container {
+        height: 100%;
+        display: grid;
+        grid-template: 100px 50px auto 60px / 1fr 1fr;
+        grid-template-areas:
+            'S S'
+            'H H'
+            'Q Q'
+            'P N';
+    }
+
+    .nav button {
+        margin: 0 30px;
+        width: 100%;
+        @include center;
+    }
 }
